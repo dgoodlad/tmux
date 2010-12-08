@@ -2141,6 +2141,18 @@ pattern
 .Ar match-string
 appears in the window, it is highlighted in the status line.
 .Pp
+.It Ic other-pane-width Ar width
+Set the width of the other, non-main panes in the
+.Ic main-vertical
+layout.
+If this option is set to 0 (the default), it will have no effect.
+If both the
+.Ic main-pane-width
+and
+.Ic other-pane-width
+options are set, the main pane will grow wider to make the other panes the
+specified width, but will never shrink to do so.
+.Pp
 .It Xo Ic remain-on-exit
 .Op Ic on | off
 .Xc

@@ -414,6 +414,7 @@ main(int argc, char **argv)
 	options_set_number(wo, "mode-mouse", 0);
 	options_set_number(wo, "monitor-activity", 0);
 	options_set_string(wo, "monitor-content", "%s", "");
+	options_set_number(wo, "other-pane-width", 0);
 	options_set_number(wo, "window-status-attr", 0);
 	options_set_number(wo, "window-status-bg", 8);
 	options_set_number(wo, "window-status-current-attr", 0);

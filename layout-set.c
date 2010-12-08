@@ -344,7 +344,7 @@ layout_set_main_v(struct window *w)
 {
 	struct window_pane	*wp;
 	struct layout_cell	*lc, *lcmain, *lccolumn, *lcchild;
-	u_int			 n, mainwidth, width, height, used;
+	u_int			 n, mainwidth, otherwidth, width, height, used;
 	u_int			 i, j, columns, rows, totalcolumns;
 
 	layout_print_cell(w->layout_root, __func__, 1);
@@ -365,6 +365,12 @@ layout_set_main_v(struct window *w)
 
 	/* Get the main pane width and add one for separator line. */
 	mainwidth = options_get_number(&w->options, "main-pane-width") + 1;
+	/* Get the optional 'other' pane width and add one for separator line. */
+	otherwidth = options_get_number(&w->options, "other-pane-width") + 1;
+	/* If an 'other' pane width was specified, honour it so long as it doesn't
+	 * shrink the main width to less than the main-pane-width */
+	if (otherwidth > 1 && w->sx - otherwidth > mainwidth)
+		mainwidth = w->sx - otherwidth;
 	if (mainwidth < PANE_MINIMUM + 1)
 		mainwidth = PANE_MINIMUM + 1;
 
